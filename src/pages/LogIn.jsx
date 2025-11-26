@@ -46,7 +46,7 @@ export default function Login() {
 //     nav("/newuser");
 //   }
   return (
-    <div className="h-screen bg-gray-200 flex items-center justify-center">
+    <div className="h-screen bg-red-200 flex items-center justify-center">
       <form
         onSubmit={enviarFormulario}
         className="max-w-sm mx-auto bg-red-900 p-8 rounded-2xl"
@@ -54,7 +54,7 @@ export default function Login() {
         <div className="mb-5">
           <label
             htmlFor="email"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-red-900 dark:text-white"
           >
             Your email
           </label>
@@ -64,15 +64,15 @@ export default function Login() {
             }}
             type="email"
             id="email"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
-            placeholder="name@flowbite.com"
+            className="bg-red-50 border border-red-300 text-red-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-red-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
+            placeholder="email"
             required=""
           />
         </div>
         <div className="mb-5">
           <label
             htmlFor="password"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-red-900 dark:text-white"
           >
             Your password
           </label>
@@ -82,7 +82,7 @@ export default function Login() {
             }}
             type="password"
             id="password"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
+            className="bg-red-50 border border-red-300 text-red-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-red-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
             required=""
           />
         </div>
@@ -92,13 +92,13 @@ export default function Login() {
               id="remember"
               type="checkbox"
               defaultValue=""
-              className="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-red-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-red-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+              className="w-4 h-4 border border-red-300 rounded-sm bg-red-50 focus:ring-3 focus:ring-red-300 dark:bg-red-700 dark:border-red-600 dark:focus:ring-red-600 dark:ring-offset-red-800 dark:focus:ring-offset-red-800"
               required=""
             />
           </div>
           <label
             htmlFor="remember"
-            className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            className="ms-2 text-sm font-medium text-red-900 dark:text-red-300"
           >
             Remember me
           </label>
