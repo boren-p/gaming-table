@@ -49,7 +49,7 @@ export default function Login() {
     <div className="h-screen bg-gray-200 flex items-center justify-center">
       <form
         onSubmit={enviarFormulario}
-        className="max-w-sm mx-auto bg-slate-900 p-8 rounded-2xl"
+        className="max-w-sm mx-auto bg-red-900 p-8 rounded-2xl"
       >
         <div className="mb-5">
           <label
