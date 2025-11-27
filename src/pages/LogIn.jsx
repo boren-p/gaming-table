@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import logo from "../assets/logo.png";
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,92 +33,86 @@ export default function Login() {
 
       const data = await respuesta.json();
       if (!respuesta.ok) {
-        throw new Error(data.message || "credenciales incorrectas");
+        throw new Error(data.message || "Credenciales incorrectas");
       }
       localStorage.setItem("token", data.access_token);
-      nav("/Home");
+      nav("/home");
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
   }
-//   function crearCuenta() {
-//     nav("/newuser");
-//   }
+
   return (
-    <div className="h-screen bg-red-200 flex items-center justify-center">
-      <form
-        onSubmit={enviarFormulario}
-        className="max-w-sm mx-auto bg-red-900 p-8 rounded-2xl"
-      >
-        <div className="mb-5">
-          <label
-            htmlFor="email"
-            className="block mb-2 text-sm font-medium text-red-900 dark:text-white"
-          >
-            Your email
-          </label>
-          <input
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            type="email"
-            id="email"
-            className="bg-red-50 border border-red-300 text-red-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-red-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
-            placeholder="email"
-            required=""
-          />
+    <div className="min-h-screen flex items-center justify-center bg-deep-forest-green p-4">
+      <div className="max-w-md w-full bg-parchment-cream rounded-xl shadow-2xl p-8 border-2 border-rustic-gold/50">
+        <div className="flex justify-center mb-8">
+            <img src={logo} alt="Gaming Table Logo" className="h-32 w-auto" />
         </div>
-        <div className="mb-5">
-          <label
-            htmlFor="password"
-            className="block mb-2 text-sm font-medium text-red-900 dark:text-white"
-          >
-            Your password
-          </label>
-          <input
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            type="password"
-            id="password"
-            className="bg-red-50 border border-red-300 text-red-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-red-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
-            required=""
-          />
-        </div>
-        <div className="flex items-start mb-5">
-          <div className="flex items-center h-5">
+        
+        <h2 className="text-3xl font-bold text-center text-deep-forest-green mb-8">Welcome Back</h2>
+
+        <form onSubmit={enviarFormulario} className="space-y-6">
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-deep-forest-green mb-2">
+              Email Address
+            </label>
             <input
-              id="remember"
-              type="checkbox"
-              defaultValue=""
-              className="w-4 h-4 border border-red-300 rounded-sm bg-red-50 focus:ring-3 focus:ring-red-300 dark:bg-red-700 dark:border-red-600 dark:focus:ring-red-600 dark:ring-offset-red-800 dark:focus:ring-offset-red-800"
-              required=""
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              id="email"
+              className="w-full px-4 py-3 rounded-lg border border-deep-forest-green/30 focus:border-rustic-gold focus:ring-2 focus:ring-rustic-gold/50 outline-none transition-all bg-white/50 text-deep-forest-green placeholder-deep-forest-green/50"
+              placeholder="Enter your email"
+              required
             />
           </div>
-          <label
-            htmlFor="remember"
-            className="ms-2 text-sm font-medium text-red-900 dark:text-red-300"
-          >
-            Remember me
-          </label>
-        </div>
-        <div className="flex gap-4">
+          
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-deep-forest-green mb-2">
+              Password
+            </label>
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              id="password"
+              className="w-full px-4 py-3 rounded-lg border border-deep-forest-green/30 focus:border-rustic-gold focus:ring-2 focus:ring-rustic-gold/50 outline-none transition-all bg-white/50 text-deep-forest-green placeholder-deep-forest-green/50"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <input
+                id="remember"
+                type="checkbox"
+                className="h-4 w-4 text-rich-mahogany-brown focus:ring-rustic-gold border-gray-300 rounded"
+              />
+              <label htmlFor="remember" className="ml-2 block text-sm text-deep-forest-green/80">
+                Remember me
+              </label>
+            </div>
+            <a href="#" className="text-sm font-medium text-rich-mahogany-brown hover:text-rustic-gold transition-colors">
+              Forgot password?
+            </a>
+          </div>
+
+          {error && (
+            <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded text-sm text-center">
+                {error}
+            </div>
+          )}
+
           <button
             type="submit"
-            className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+            disabled={loading}
+            className="w-full bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-3 px-4 rounded-lg transition-colors duration-300 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Submit
+            {loading ? "Signing in..." : "Sign In"}
           </button>
-          {/* <button
-            onClick={crearCuenta}
-            className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-          >
-            crear cuenta
-          </button> */}
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
