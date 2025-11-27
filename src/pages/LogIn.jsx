@@ -13,9 +13,6 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    console.log(`hola`);
-    console.log(email);
-    console.log(password);
     try {
       const respuesta = await fetch(
         "https://api-funval-g6.onrender.com/auth/login",
@@ -36,7 +33,7 @@ export default function Login() {
         throw new Error(data.message || "Credenciales incorrectas");
       }
       localStorage.setItem("token", data.access_token);
-      nav("/home");
+      nav("/");
     } catch (err) {
       setError(err.message);
     } finally {
