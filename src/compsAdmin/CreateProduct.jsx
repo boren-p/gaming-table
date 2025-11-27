@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import Loading from './Loading';
+import Loading from '../components/Loading';
 
     const inState = {
         name:"",
@@ -55,7 +55,7 @@ const CreateProduct = () => {
 
     async function handleSubmit(e) {
         const token = localStorage.getItem("token");
-        
+
         e.preventDefault();
         // iniciar estado submit
         dispatch({ type: "submit" });
@@ -107,7 +107,7 @@ const CreateProduct = () => {
     
     return (
         <div className='w-100 border border-red-700 bg-red-700 rounded-2xl'>
-            <h2 className='font-bold text-center m-5'>NUEVO PRODUCTO</h2>
+            <h2 className='font-bold text-white text-center m-5'>NUEVO PRODUCTO</h2>
             <form onSubmit={handleSubmit}
                 className='flex flex-col gap-3 m-5'>
                 <input type="text" 

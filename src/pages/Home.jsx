@@ -3,8 +3,6 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import HeroCarousel from '../components/HeroCarousel';
-import CreateProduct from "../comps/CreateProduct"
-import Loading from '../comps/Loading';
 
 const Home = () => {
   return (
@@ -34,7 +32,7 @@ const Home = () => {
             ))}
           </div>
         </section>
-         <CreateProduct/>
+        
       </main>
       <Footer />
     </div>
