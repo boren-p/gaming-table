@@ -3,8 +3,8 @@ import logo from '../assets/logo.png';
 
 const Navbar = () => {
   return (
-    <header className="relative bg-deep-forest-green h-18 text-parchment-cream  shadow-md w-full">
-      <img src={logo} alt="Gaming Table Logo" className="h-70 w-auto absolute top-0 left-0 z-10" />
+    <header className="relative bg-deep-forest-green h-15 text-parchment-cream  shadow-md w-full">
+      <img src={logo} alt="Gaming Table Logo" className="h-70 w-auto absolute top-0 left-[2.5%] z-10" />
       <div className="pl-70 pr-20 w-full h-full flex justify-between items-center ">
         <ul className="flex space-x-6">
           <li>

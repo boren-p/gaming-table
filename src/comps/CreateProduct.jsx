@@ -54,19 +54,20 @@ const CreateProduct = () => {
     }
 
     async function handleSubmit(e) {
+        const token = localStorage.getItem("token");
+        
         e.preventDefault();
         // iniciar estado submit
         dispatch({ type: "submit" });
 
         // verificar campos vacios.
-        if(s=>(
-            s.name.trim() !== "" 
-            ||s.descript.trim() !== "" 
-            ||s.price > 0 
-            ||s.stock > 0 
-            ||s.category.trim() !== "" 
-            ||s.image.trim() !== ""
-        )){
+        if( state.name.trim() === "" 
+            ||state.descript.trim() ===  "" 
+            ||state.price <= 0 
+            ||state.stock <= 0 
+            ||state.category.trim() ===  "" 
+            ||state.image.trim() ===  ""
+        ){
             dispatch({ type: "error" });
             isError();
             alert("Los campos están vacios. Favor rellenar por lo menos un campo de texto.")
@@ -82,14 +83,17 @@ const CreateProduct = () => {
         try {
             const answ = await fetch("https://api-funval-g6.onrender.com/products/",{
                 method: 'POST',
-                 headers:{ "Content-Type": "application/json", },
+                 headers:{ 
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json", 
+                },
                  body: JSON.stringify({
-                    name,
-                    description,
-                    price,
-                    stock,
-                    category,
-                    image_url
+                    name : state.name,
+                    description : state.descript,
+                    price : state.price,
+                    stock : state.stock,
+                    category : state.category,
+                    image_url : state.image
                 }),})
         } catch (error) {
             dispatch({type : "error"});
