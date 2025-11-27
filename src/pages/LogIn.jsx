@@ -12,7 +12,7 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    console.log("hola kevin");
+    console.log(`hola`);
     console.log(email);
     console.log(password);
     try {
