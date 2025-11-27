@@ -25,7 +25,7 @@ const HeroCarousel = () => {
   }, []);
 
   return (
-    <section className="relative w-full h-[500px] flex items-center justify-center overflow-hidden">
+    <section className="relative w-full h-[550px] flex items-center justify-center overflow-hidden">
       {/* Carousel Images */}
       {carouselImages.map((img, index) => (
         <div
