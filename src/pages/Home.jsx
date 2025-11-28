@@ -13,7 +13,6 @@ const Home = () => {
       <main className="grow w-full">
         <HeroCarousel />
         
-        <CreateProduct/>
       </main>
       <Footer />
     </div>
