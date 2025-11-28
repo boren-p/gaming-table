@@ -35,9 +35,6 @@ const Navbar = () => {
             <button onClick={() => nav("/games")} className=" hover:text-rustic-gold transition-colors duration-300 cursor-pointer">Games</button>
           </li>
           <li>
-            <a href="#" className="  hover:text-rustic-gold transition-colors duration-300">About</a>
-          </li>
-          <li>
             <button onClick={() => nav("/contact")} className="  hover:text-rustic-gold transition-colors duration-300 cursor-pointer">Contact</button>
           </li>
         </ul>
