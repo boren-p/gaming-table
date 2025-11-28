@@ -32,7 +32,7 @@ const Navbar = () => {
             </button>
           </li>
           <li>
-            <a href="#" className=" hover:text-rustic-gold transition-colors duration-300">Games</a>
+            <button onClick={() => nav("/games")} className=" hover:text-rustic-gold transition-colors duration-300 cursor-pointer">Games</button>
           </li>
           <li>
             <a href="#" className="  hover:text-rustic-gold transition-colors duration-300">About</a>

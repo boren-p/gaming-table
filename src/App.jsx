@@ -8,6 +8,7 @@ import CreateAccount from './pages/CreateAccount';
 import Collection from './pages/Collection';
 import Cart from './pages/Cart';
 import Contact from './pages/Contact';
+import Games from './pages/Games';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path='/collection' element={<Collection/>}/>
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/contact' element={<Contact/>}/>
+        <Route path='/games' element={<Games/>}/>
       </Routes>
     </div>
   );
