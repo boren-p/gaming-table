@@ -41,8 +41,8 @@ const Navbar = () => {
             <a href="#" className="  hover:text-rustic-gold transition-colors duration-300">Contact</a>
           </li>
         </ul>
-        {localStorage.getItem("role") === "cliente" && <h1 className='bg-green-900 rounded-2xl py-2 px-7'>Bienvenido, {localStorage.getItem("user")}</h1>}
-        {localStorage.getItem("role") === "admin" && <h1 className='bg-green-900 rounded-2xl py-2 px-7'>Bienvenido, Señor {localStorage.getItem("user")}</h1>}
+        {localStorage.getItem("role") === "cliente" && <h1 className=' rounded-2xl py-2 px-7'>Bienvenido, {localStorage.getItem("user")}</h1>}
+        {localStorage.getItem("role") === "admin" && <h1 className=' rounded-2xl py-2 px-7'>Bienvenido, Señor {localStorage.getItem("user")}</h1>}
         <div className='flex gap-5'>
         {!localStorage.getItem("role")  && <button 
                   onClick={()=>nav("/login")} 

@@ -1,16 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import UseProductsCards from "../hooks/useProductsCards";
 import Loading from '../components/Loading';
 import EditProduct from './EditProduct';
 
 const ProductM = () => {
   const  prods  = UseProductsCards();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const [idProd, setIdProd] = useState(0);
+
+
+  function openModal(id){
+    setIdProd(id);
+    setShowEdit(true);
+  }
+
+  useEffect((id)=>{
+    console.log (idProd);
+  },[idProd])
+
+  async function deleteProd(id) {
+    const token = localStorage.getItem("token")
+    console.log("Token:", token);
+    const answ = prompt("¿Está seguro que desea eliminar el producto? (sí/no)");
+    //VALIDACION
+    const rta = answ ? answ.trim().toLowerCase() : "";
+    if (rta === "sí" || rta === "si"){
+      console.log("dijo que si")
+      try {
+        setLoading(true);
+        const deleteProd = await fetch(`https://api-funval-g6.onrender.com/products/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          }
+        })
+        if(deleteProd.ok) alert("Producto eliminado con exito.")
+      } catch (error) {
+        alert(`${error}`)
+      }finally{
+        setLoading(false);
+        window.location.reload();
+      }
+      
+    } else if (rta === "no"){
+      console.log("dijo que no")
+    }
+  }
+
 
     return (
         <>
         <section className="py-16 w-full px-4 md:px-8">
-          {/* <EditProduct/> */}
+          {loading && <Loading/>}
+          {showEdit && (<EditProduct product={idProd}/>)}
           <h2 className="text-3xl font-bold mb-8 text-center text-deep-forest-green">Product Manager</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
             {prods.map((item) => (
@@ -23,7 +67,11 @@ const ProductM = () => {
                   {item.stock} . ${item.price}
                 </p>
                 <div className='flex justify-between'>
-                <button className="text-rich-mahogany-brown font-semibold hover:text-rustic-gold transition-colors">
+                  <button onClick={()=>{deleteProd(item.id)}} className="text-red-600 font-semibold hover:text-rustic-gold transition-colors">
+                  DELETE
+                </button>
+
+                <button onClick={()=>{openModal(item.id)}} className="text-rich-mahogany-brown font-semibold hover:text-rustic-gold transition-colors">
                   Edit &rarr;
                 </button>
                 

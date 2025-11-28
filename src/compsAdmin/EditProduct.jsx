@@ -1,6 +1,7 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import Loading from '../components/Loading';
 import UseOneProduct from '../hooks/useOneProduct';
+
 
     const inState = {
         name:"",
@@ -39,15 +40,26 @@ import UseOneProduct from '../hooks/useOneProduct';
         }
     }
     
-const EditProduct = (id) => {
+const EditProduct = ({ product }) => {
     const [state, dispatch] = useReducer(reducer, inState)
-    const [prod] = UseOneProduct(id)
+    const prod = UseOneProduct(product)
 
     function isError() {
         return (
             console.error("error")
         );
     }
+
+    useEffect(() => {
+    if (prod) {
+        dispatch({ type: "change", field: "name", value: prod.name });
+        dispatch({ type: "change", field: "descript", value: prod.description });
+        dispatch({ type: "change", field: "price", value: prod.price });
+        dispatch({ type: "change", field: "stock", value: prod.stock });
+        dispatch({ type: "change", field: "category", value: prod.category });
+        dispatch({ type: "change", field: "image", value: prod.image_url }); 
+    }
+}, [prod]);
 
     async function handleSubmit(e) {
         const token = localStorage.getItem("token");
@@ -70,14 +82,12 @@ const EditProduct = (id) => {
             return;
         }
 
-        // verificar estado de carga.
-
         // peticion a la API para enviar los datos del producto.
         try {
-            const answ = await fetch("https://api-funval-g6.onrender.com/products/",{
-                method: 'POST',
+            const answ = await fetch(`https://api-funval-g6.onrender.com/products/${product}`,{
+                method: 'PUT',
                  headers:{ 
-                    Authorization: `Bearer ${token}`,
+                    "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json", 
                 },
                  body: JSON.stringify({
@@ -88,12 +98,13 @@ const EditProduct = (id) => {
                     category : state.category,
                     image_url : state.image
                 }),})
+                if (answ.ok) {
+                    window.location.reload();
+                }
         } catch (error) {
             dispatch({type : "error"});
             console.error(error.message);
         } finally {
-            dispatch({type : "success"});
-            dispatch({ type: "reset" });
         }
         
     }
@@ -101,8 +112,12 @@ const EditProduct = (id) => {
     return (
         <div className='fixed z-50 top-0 left-0 w-full mt-20'>
             <div className='fixed z-40 top-0 left-0 backdrop-blur-2xl h-screen w-screen'></div>
-            <div className='bg-white relative z-50'>
+            <div className='bg-white relative z-50 p-5'>
                 <h2 className=" text-3xl font-bold mb-8 text-center text-deep-forest-green">Edit Product</h2>
+                <div className='flex items-center justify-around'>
+                {prod && prod.image_url ? 
+                (<div style={{ backgroundImage: `url(${prod.image_url})` }} className="size-100 bg-contain bg-center bg-no-repeat"/>) 
+                : (<div className="size-100 bg-gray-200"></div>)}
                 <form onSubmit={handleSubmit}
                 className='flex flex-col gap-3 m-5'>
                 <div className='flex gap-5 w-full'>
@@ -110,7 +125,7 @@ const EditProduct = (id) => {
                 <input type="text" 
                     className='bg-neutral-400 h-10 p-2' 
                     placeholder='Nombre' 
-                    value={state.name} 
+                    value={state.name || ""} 
                     onChange={ e => dispatch({ 
                         type: "change", 
                         field: "name", 
@@ -119,7 +134,7 @@ const EditProduct = (id) => {
                 <input type="text" 
                     className='bg-neutral-400 h-10 p-2' 
                     placeholder='Descripcion' 
-                    value={state.descript} 
+                    value={state.descript || ""} 
                     onChange={ e => dispatch({ 
                         type: "change", 
                         field: "descript", 
@@ -130,7 +145,7 @@ const EditProduct = (id) => {
                 <input type="number" 
                     className='bg-neutral-400 h-10 p-2' 
                     placeholder='Precio' 
-                    value={state.price} 
+                    value={state.price || 0} 
                     onChange={ e => dispatch({ 
                         type: "change", 
                         field: "price", 
@@ -139,7 +154,7 @@ const EditProduct = (id) => {
                 <input type="number" 
                     className='bg-neutral-400 h-10 p-2' 
                     placeholder='Stock' 
-                    value={state.stock} 
+                    value={state.stock || 0} 
                     onChange={ e => dispatch({ 
                         type: "change", 
                         field: "stock", 
@@ -150,7 +165,7 @@ const EditProduct = (id) => {
                 <input type="text" 
                     className='bg-neutral-400 h-10 p-2' 
                     placeholder='Categoria' 
-                    value={state.category} 
+                    value={state.category || ""} 
                     onChange={ e => dispatch({ 
                         type: "change", 
                         field: "category", 
@@ -159,7 +174,7 @@ const EditProduct = (id) => {
                 <input type="text" 
                     className='bg-neutral-400 h-10 p-2' 
                     placeholder='Imagen (url)' 
-                    value={state.image} 
+                    value={state.image || ""} 
                     onChange={ e => dispatch({ 
                         type: "change", 
                         field: "image", 
@@ -167,6 +182,7 @@ const EditProduct = (id) => {
                         })}/>
                 <button type="submit" className='bg-neutral-700 p-5 text-white'>Save Changes</button>
                 </form>
+                </div>
             </div>
         </div>
     );
