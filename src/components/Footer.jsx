@@ -7,7 +7,6 @@ const Footer = () => {
       <div className="w-full px-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="mb-4 md:mb-0 flex flex-col items-center md:items-start">
-            <img src={logo} alt="Gaming Table Logo" className="h-60 w-auto mb-4" />
             <p className="text-lg mt-2 opacity-90 max-w-md text-center md:text-left font-medium">
               Purveyors of fine cardboard and plastic distractions. Guaranteed to ruin friendships or your money back (not really).
             </p>

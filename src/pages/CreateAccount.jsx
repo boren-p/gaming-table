@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
-export default function Login() {
+export default function CreateAccount() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPSW, setConfirmPSW ] = useState("")
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const nav = useNavigate();
@@ -12,10 +14,20 @@ export default function Login() {
   async function enviarFormulario(e) {
     e.preventDefault();
     setLoading(true);
-    setError(null);
+    setError("");
+    console.log(name);
+    console.log(email);
+    console.log(password);
+
+    if (password !== confirmPSW) {
+    setError("CONTRASEÑA NO VALIDA");
+    setLoading(false);
+    return;
+    }
+
     try {
-      const respuesta = await fetch(
-        "https://api-funval-g6.onrender.com/auth/login",
+      const answ = await fetch(
+        "https://api-funval-g6.onrender.com/auth/register",
         {
           method: "POST",
           headers: {
@@ -24,24 +36,23 @@ export default function Login() {
           body: JSON.stringify({
             email,
             password,
+            name,
           }),
         }
       );
 
-      const data = await respuesta.json();
-      if (!respuesta.ok) {
+      const data = await answ.json();
+      if (!answ.ok) {
         throw new Error(data.message || "Credenciales incorrectas");
       }
-      localStorage.setItem("token", data.access_token);
       localStorage.setItem("role", data.user_role);
       localStorage.setItem("user", data.user_name);
-      if (data.user_role === "admin") {
-        nav("/admin");
-      } else {
         nav("/client");
-      }
     } catch (err) {
       setError(err.message);
+      console.log(name);
+    console.log(email);
+    console.log(password);
     } finally {
       setLoading(false);
     }
@@ -54,9 +65,23 @@ export default function Login() {
             <img src={logo} alt="Gaming Table Logo" className="h-40 w-auto" />
         </div>
         
-        <h2 className="text-3xl font-bold text-center text-deep-forest-green mb-4">Welcome To <br/>Gaming Table</h2>
+        <h2 className="text-3xl font-bold text-center text-deep-forest-green mb-4">Create account in <br/>Gaming Table</h2>
 
         <form onSubmit={enviarFormulario} className="space-y-6">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-deep-forest-green mb-2">
+              Full Name
+            </label>
+            <input
+              onChange={(e) => setName(e.target.value)}
+              type="text"
+              id="name"
+              className="w-full px-4 py-3 rounded-lg border border-deep-forest-green/30 focus:border-rustic-gold focus:ring-2 focus:ring-rustic-gold/50 outline-none transition-all bg-white/50 text-deep-forest-green placeholder-deep-forest-green/50"
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
+          
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-deep-forest-green mb-2">
               Email Address
@@ -85,7 +110,30 @@ export default function Login() {
             />
           </div>
 
-          
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-deep-forest-green mb-2">
+              Confirm Password
+            </label>
+            <input
+              onChange={(e) => setConfirmPSW(e.target.value)}
+              type="password"
+              id="cpassword"
+              className="w-full px-4 py-3 rounded-lg border border-deep-forest-green/30 focus:border-rustic-gold focus:ring-2 focus:ring-rustic-gold/50 outline-none transition-all bg-white/50 text-deep-forest-green placeholder-deep-forest-green/50"
+              placeholder="Confirm your password"
+              required
+            />
+          </div>
+
+          {password!==confirmPSW && (
+            <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded text-sm text-center">
+                VERIFICA QUE TU CONTRASEÑA COINCIDA
+            </div>
+          )}
+          {password===(confirmPSW?confirmPSW:null) && (
+            <div className="p-3 bg-green-100 border border-green-400 text-green-700 rounded text-sm text-center">
+                LAS CONTRASEÑAS COINCIDEN
+            </div>
+          )}
 
           {error && (
             <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded text-sm text-center">
@@ -98,11 +146,11 @@ export default function Login() {
             disabled={loading}
             className="w-full bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-3 px-4 rounded-lg transition-colors duration-300 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? "Signing in..." : "Sign In"}
+            {loading ? "Creating..." : "Create Account"}
           </button>
           <div className="flex gap-2 w-full justify-center">
-            <h2>Don't have an account?</h2>
-          <Link to="/create">Create Account</Link>
+            <h2>Already have an account?</h2>
+          <Link to="/login">Log In</Link>
           </div>
         </form>
       </div>

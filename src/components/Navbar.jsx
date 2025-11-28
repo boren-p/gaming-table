@@ -1,9 +1,11 @@
 import React from 'react';
 import logo from '../assets/logo.png';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-  const nav = useNavigate("")
+  const nav = useNavigate();
+  const loc = useLocation();
+
   return (
     <header className="relative bg-deep-forest-green h-15 text-parchment-cream  shadow-md w-full">
       <img src={logo} alt="Gaming Table Logo" className="size-55 absolute top-0 left-[2.5%] z-10" />
@@ -22,9 +24,28 @@ const Navbar = () => {
             <a href="#" className="  hover:text-rustic-gold transition-colors duration-300">Contact</a>
           </li>
         </ul>
-        <button onClick={()=>nav("/login")} className=" bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-2 px-4 rounded transition-colors duration-300">
-          Sign In
-        </button>
+        {loc.pathname=== "/client"&&<h1 className='bg-green-900 rounded-2xl py-2 px-7'>Bienvenido, $name</h1>}
+        {loc.pathname=== "/admin"&&<h1 className='bg-green-900 rounded-2xl py-2 px-7'>Bienvenido, Señor {localStorage.getItem("user")}</h1>}
+        <div className='flex gap-5'>
+        {loc.pathname==="/" && <button 
+                  onClick={()=>nav("/login")} 
+                  className=" bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-2 px-4 rounded transition-colors duration-300">
+              Sign In
+              </button>}
+        {loc.pathname==="/" && <button 
+                  onClick={()=>nav("/create")} 
+                  className=" bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-2 px-4 rounded transition-colors duration-300">
+              Create Account
+              </button>}
+        </div>
+        {(loc.pathname==="/client" || loc.pathname === "/admin") && <button 
+                  onClick={()=>{
+                    localStorage.clear();
+                    nav("/")}} 
+                  className=" bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-2 px-4 rounded transition-colors duration-300">
+              Sign Out
+              </button>}
+
       </div>
     </header>
   );

@@ -38,7 +38,7 @@ import Loading from '../components/Loading';
         }
     }
     
-const CreateProduct = () => {
+const EditProduct = () => {
     const [state, dispatch] = useReducer(reducer, inState)
 
     function isError() {
@@ -105,7 +105,7 @@ const CreateProduct = () => {
     
     return (
         <div className='w-full mt-20'>
-            <h2 className="text-3xl font-bold mb-8 text-center text-deep-forest-green">New Product</h2>
+            <h2 className="text-3xl font-bold mb-8 text-center text-deep-forest-green">Edit Product</h2>
             <form onSubmit={handleSubmit}
                 className='flex flex-col gap-3 m-5'>
                 <div className='flex gap-5 w-full'>
@@ -168,10 +168,10 @@ const CreateProduct = () => {
                         field: "image", 
                         value: e.target.value 
                         })}/>
-                <button type="submit" className='bg-neutral-700 p-5 text-white'>Create</button>
+                <button type="submit" className='bg-neutral-700 p-5 text-white'>Save Changes</button>
             </form>
         </div>
     );
 }
 
-export default CreateProduct;
+export default EditProduct;
