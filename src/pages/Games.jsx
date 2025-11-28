@@ -126,9 +126,6 @@ const Games = () => {
                     {!item.image_url && `Image for ${item.name}`}
                   </div>
                   <h3 className="text-xl font-bold mb-2 text-deep-forest-green">{item.name}</h3>
-                  <p className="text-gray-600 mb-4 flex-grow">
-                    {item.description || "No description available."}
-                  </p>
                   <div className="flex justify-between items-center mt-auto gap-4">
                     <span className="text-lg font-bold text-rich-mahogany-brown">${item.price}</span>
                     <div className="flex gap-2">

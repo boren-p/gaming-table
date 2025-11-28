@@ -10,7 +10,7 @@ const ProductList = () => {
     <section className="py-16 w-full px-4 md:px-8">
       <h2 className="text-3xl font-bold mb-8 text-center text-deep-forest-green">Featured Products</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
-        {products.map((item) => (
+        {products.slice(0,3).map((item) => (
           <div key={item.id} className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-rustic-gold/20 flex flex-col">
             <div 
               style={{backgroundImage: `url(${item.image_url})`}} 
@@ -19,9 +19,6 @@ const ProductList = () => {
               {!item.image_url && `Image for ${item.name}`}
             </div>
             <h3 className="text-xl font-bold mb-2 text-deep-forest-green">{item.name}</h3>
-            <p className="text-gray-600 mb-4 flex-grow">
-              {item.description || "No description available."}
-            </p>
             <div className="flex justify-between items-center mt-auto gap-4">
                 <span className="text-lg font-bold text-rich-mahogany-brown">${item.price}</span>
                 <div className="flex gap-2">
