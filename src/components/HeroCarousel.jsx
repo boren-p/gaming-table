@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Import carousel images
 import img1 from '../assets/carousel/1.png';
@@ -11,10 +12,12 @@ import img7 from '../assets/carousel/7.png';
 import img8 from '../assets/carousel/8.png';
 import img9 from '../assets/carousel/9.png';
 import img10 from '../assets/carousel/10.png';
+import { useLocation } from 'react-router-dom';
 
 const carouselImages = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10];
 
 const HeroCarousel = () => {
+  const nav = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -50,7 +53,7 @@ const HeroCarousel = () => {
         <p className="text-xl mb-8 max-w-2xl mx-auto drop-shadow-md">
           Discover the best tabletop games, accessories, and community events. Join us for an unforgettable gaming experience.
         </p>
-        <button className="bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-300 shadow-lg border border-parchment-cream/20">
+        <button onClick={()=>nav("/collection")} className="bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-300 shadow-lg border border-parchment-cream/20 cursor-pointer">
           Explore Collection
         </button>
       </div>

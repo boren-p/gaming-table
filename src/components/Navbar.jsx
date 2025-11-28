@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../assets/logo.png';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Loading from './Loading';
 
 const Navbar = () => {
   const nav = useNavigate();
@@ -24,17 +25,17 @@ const Navbar = () => {
             <a href="#" className="  hover:text-rustic-gold transition-colors duration-300">Contact</a>
           </li>
         </ul>
-        {loc.pathname=== "/client"&&<h1 className='bg-green-900 rounded-2xl py-2 px-7'>Bienvenido, $name</h1>}
+        {loc.pathname=== "/client"&&<h1 className='bg-green-900 rounded-2xl py-2 px-7'>Bienvenido, {localStorage.getItem("user")}</h1>}
         {loc.pathname=== "/admin"&&<h1 className='bg-green-900 rounded-2xl py-2 px-7'>Bienvenido, Señor {localStorage.getItem("user")}</h1>}
         <div className='flex gap-5'>
         {loc.pathname==="/" && <button 
                   onClick={()=>nav("/login")} 
-                  className=" bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-2 px-4 rounded transition-colors duration-300">
+                  className=" bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-2 px-4 rounded transition-colors duration-300 cursor-pointer">
               Sign In
               </button>}
         {loc.pathname==="/" && <button 
                   onClick={()=>nav("/create")} 
-                  className=" bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-2 px-4 rounded transition-colors duration-300">
+                  className=" bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-2 px-4 rounded transition-colors duration-300 cursor-pointer">
               Create Account
               </button>}
         </div>
@@ -42,7 +43,7 @@ const Navbar = () => {
                   onClick={()=>{
                     localStorage.clear();
                     nav("/")}} 
-                  className=" bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-2 px-4 rounded transition-colors duration-300">
+                  className=" bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-2 px-4 rounded transition-colors duration-300 cursor-pointer">
               Sign Out
               </button>}
 

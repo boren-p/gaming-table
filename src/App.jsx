@@ -5,6 +5,7 @@ import LogIn from './pages/LogIn';
 import HomeClient from './pages/HomeClient';
 import HomeAdmin from './pages/HomeAdmin';
 import CreateAccount from './pages/CreateAccount';
+import Collection from './pages/Collection';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path='/create' element={<CreateAccount/>}/>
         <Route path='/client' element={<HomeClient/>}/>
         <Route path='/admin' element={<HomeAdmin/>}/>
+        <Route path='/collection' element={<Collection/>}/>
       </Routes>
     </div>
   );

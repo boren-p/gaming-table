@@ -17,23 +17,23 @@ const HomeClient = () => {
       navigate("/");
     }
 
-    async function traerPerfil() {
-      try {
-        const respuesta = await fetch(
-          "https://api-funval-g6.onrender.com/auth/me",
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const data = await respuesta.json();
-        setUser(data);
-      } catch (error) {}
-    }
-    traerPerfil();
+    // async function traerPerfil() {
+    //   try {
+    //     const respuesta = await fetch(
+    //       "https://api-funval-g6.onrender.com/auth/me",
+    //       {
+    //         method: "GET",
+    //         headers: {
+    //           Authorization: `Bearer ${token}`,
+    //           "Content-Type": "application/json",
+    //         },
+    //       }
+    //     );
+    //     const data = await respuesta.json();
+    //     setUser(data);
+    //   } catch (error) {}
+    // }
+    // traerPerfil();
   }, []);
   return (
     <div className="flex flex-col min-h-screen bg-parchment-cream text-deep-forest-green font-sans overflow-x-hidden">

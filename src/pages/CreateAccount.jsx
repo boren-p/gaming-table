@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import Loading from "../components/Loading";
 
 export default function CreateAccount() {
   const [name, setName] = useState("");
@@ -62,7 +63,7 @@ export default function CreateAccount() {
     <div className="min-h-screen flex items-center justify-center bg-deep-forest-green p-4">
       <div className="max-w-md w-full bg-parchment-cream rounded-xl shadow-2xl p-8 border-2 border-rustic-gold/50">
         <div className="flex justify-center">
-            <img src={logo} alt="Gaming Table Logo" className="h-40 w-auto" />
+            <img onClick={()=>nav("/")} src={logo} alt="Gaming Table Logo" className="h-40 w-auto cursor-pointer" />
         </div>
         
         <h2 className="text-3xl font-bold text-center text-deep-forest-green mb-4">Create account in <br/>Gaming Table</h2>
@@ -144,9 +145,9 @@ export default function CreateAccount() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-3 px-4 rounded-lg transition-colors duration-300 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-3 px-4 rounded-lg transition-colors duration-300 shadow-md disabled:cursor-not-allowed cursor-pointer"
           >
-            {loading ? "Creating..." : "Create Account"}
+            {loading ? "Creating..."&& <Loading/> : "Create Account"}
           </button>
           <div className="flex gap-2 w-full justify-center">
             <h2>Already have an account?</h2>

@@ -168,7 +168,7 @@ const CreateProduct = () => {
                         field: "image", 
                         value: e.target.value 
                         })}/>
-                <button type="submit" className='bg-neutral-700 p-5 text-white'>Create</button>
+                <button type="submit" className='bg-neutral-700 p-5 text-white cursor-pointer'>Create</button>
             </form>
         </div>
     );

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import Loading from "../components/Loading";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -37,8 +38,10 @@ export default function Login() {
       localStorage.setItem("user", data.user_name);
       if (data.user_role === "admin") {
         nav("/admin");
-      } else {
+      } else if (data.user_role ==="cliente"){
         nav("/client");
+      } else {
+        nav("/")
       }
     } catch (err) {
       setError(err.message);
@@ -51,7 +54,7 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center bg-deep-forest-green p-4">
       <div className="max-w-md w-full bg-parchment-cream rounded-xl shadow-2xl p-8 border-2 border-rustic-gold/50">
         <div className="flex justify-center">
-            <img src={logo} alt="Gaming Table Logo" className="h-40 w-auto" />
+            <img onClick={()=>nav("/")} src={logo} alt="Gaming Table Logo" className="h-40 w-auto cursor-pointer" />
         </div>
         
         <h2 className="text-3xl font-bold text-center text-deep-forest-green mb-4">Welcome To <br/>Gaming Table</h2>
@@ -96,9 +99,10 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-3 px-4 rounded-lg transition-colors duration-300 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+            className="relative w-full bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-3 px-4 rounded-lg transition-colors duration-300 shadow-md disabled:cursor-not-allowed cursor-pointer"
           >
-            {loading ? "Signing in..." : "Sign In"}
+            {loading ? "Sign in..."&&<Loading/> : "Sign In"}
+            
           </button>
           <div className="flex gap-2 w-full justify-center">
             <h2>Don't have an account?</h2>
