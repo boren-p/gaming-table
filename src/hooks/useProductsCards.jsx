@@ -7,6 +7,7 @@ export default function UseProductsCards() {
             fetch("https://api-funval-g6.onrender.com/products/?skip=0&limit=100&category=gaming%20table")
                 .then(r => r.json())
                 .then(data => setProds(data));
-        }, [prods]);
+        }, []);
+
 
     return  prods ;}

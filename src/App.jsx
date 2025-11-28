@@ -6,6 +6,7 @@ import HomeClient from './pages/HomeClient';
 import HomeAdmin from './pages/HomeAdmin';
 import CreateAccount from './pages/CreateAccount';
 import Collection from './pages/Collection';
+import Cart from './pages/Cart';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path='/client' element={<HomeClient/>}/>
         <Route path='/admin' element={<HomeAdmin/>}/>
         <Route path='/collection' element={<Collection/>}/>
+        <Route path='/cart' element={<Cart/>}/>
       </Routes>
     </div>
   );
