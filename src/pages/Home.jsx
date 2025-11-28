@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import HeroCarousel from '../components/HeroCarousel';
 import Cards from '../components/Cards';
+import CreateProduct from '../compsAdmin/CreateProduct';
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
         
         <Cards/>
         
+        <CreateProduct/>
       </main>
       <Footer />
     </div>
