@@ -53,7 +53,7 @@ const HeroCarousel = () => {
         <p className="text-xl mb-8 max-w-2xl mx-auto drop-shadow-md">
           Discover the best tabletop games, accessories, and community events. Join us for an unforgettable gaming experience.
         </p>
-        <button onClick={()=>nav("/collection")} className="bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-300 shadow-lg border border-parchment-cream/20 cursor-pointer">
+        <button onClick={()=>nav("/Games")} className="bg-rich-mahogany-brown hover:bg-rustic-gold text-parchment-cream font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-300 shadow-lg border border-parchment-cream/20 cursor-pointer">
           Explore Collection
         </button>
       </div>
