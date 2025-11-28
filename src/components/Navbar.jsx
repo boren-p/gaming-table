@@ -38,7 +38,7 @@ const Navbar = () => {
             <a href="#" className="  hover:text-rustic-gold transition-colors duration-300">About</a>
           </li>
           <li>
-            <a href="#" className="  hover:text-rustic-gold transition-colors duration-300">Contact</a>
+            <button onClick={() => nav("/contact")} className="  hover:text-rustic-gold transition-colors duration-300 cursor-pointer">Contact</button>
           </li>
         </ul>
         {localStorage.getItem("role") === "cliente" && <h1 className=' rounded-2xl py-2 px-7'>Bienvenido, {localStorage.getItem("user")}</h1>}
