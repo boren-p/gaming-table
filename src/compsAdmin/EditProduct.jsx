@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import Loading from '../components/Loading';
+import UseOneProduct from '../hooks/useOneProduct';
 
     const inState = {
         name:"",
@@ -38,18 +39,13 @@ import Loading from '../components/Loading';
         }
     }
     
-const EditProduct = () => {
+const EditProduct = (id) => {
     const [state, dispatch] = useReducer(reducer, inState)
+    const [prod] = UseOneProduct(id)
 
     function isError() {
         return (
             console.error("error")
-        );
-    }
-
-    function isLoading() {
-        return (
-            <Loading/>
         );
     }
 
@@ -75,7 +71,6 @@ const EditProduct = () => {
         }
 
         // verificar estado de carga.
-        if (state.loading) return <Loading />;
 
         // peticion a la API para enviar los datos del producto.
         try {
@@ -104,9 +99,11 @@ const EditProduct = () => {
     }
     
     return (
-        <div className='w-full mt-20'>
-            <h2 className="text-3xl font-bold mb-8 text-center text-deep-forest-green">Edit Product</h2>
-            <form onSubmit={handleSubmit}
+        <div className='fixed z-50 top-0 left-0 w-full mt-20'>
+            <div className='fixed z-40 top-0 left-0 bg-neutral-800 h-screen w-screen opacity-50'></div>
+            <div className='bg-white relative z-50'>
+                <h2 className=" text-3xl font-bold mb-8 text-center text-deep-forest-green">Edit Product</h2>
+                <form onSubmit={handleSubmit}
                 className='flex flex-col gap-3 m-5'>
                 <div className='flex gap-5 w-full'>
                     <div className='flex flex-col gap-3 w-full'>
@@ -169,7 +166,8 @@ const EditProduct = () => {
                         value: e.target.value 
                         })}/>
                 <button type="submit" className='bg-neutral-700 p-5 text-white'>Save Changes</button>
-            </form>
+                </form>
+            </div>
         </div>
     );
 }

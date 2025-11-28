@@ -33,7 +33,7 @@ import Loading from '../components/Loading';
                 error:true,
             }
             case "reset": return inState;
-            default:
+            default: return inState
                 break;
         }
     }
@@ -44,12 +44,6 @@ const CreateProduct = () => {
     function isError() {
         return (
             console.error("error")
-        );
-    }
-
-    function isLoading() {
-        return (
-            <Loading/>
         );
     }
 
@@ -74,9 +68,6 @@ const CreateProduct = () => {
             return;
         }
 
-        // verificar estado de carga.
-        if (state.loading) return <Loading />;
-
         // peticion a la API para enviar los datos del producto.
         try {
             const answ = await fetch("https://api-funval-g6.onrender.com/products/",{
@@ -93,18 +84,19 @@ const CreateProduct = () => {
                     category : state.category,
                     image_url : state.image
                 }),})
+                answ.ok?dispatch({type : "success"}):dispatch({type : "error"});
         } catch (error) {
             dispatch({type : "error"});
             console.error(error.message);
         } finally {
-            dispatch({type : "success"});
-            dispatch({ type: "reset" });
+            answ.ok?dispatch({ type: "reset" }):null;
         }
         
     }
     
     return (
         <div className='w-full mt-20'>
+            {state.loading && <Loading/>}
             <h2 className="text-3xl font-bold mb-8 text-center text-deep-forest-green">New Product</h2>
             <form onSubmit={handleSubmit}
                 className='flex flex-col gap-3 m-5'>
@@ -167,7 +159,8 @@ const CreateProduct = () => {
                         type: "change", 
                         field: "image", 
                         value: e.target.value 
-                        })}/>
+                        })
+                        }/>
                 <button type="submit" className='bg-neutral-700 p-5 text-white cursor-pointer'>Create</button>
             </form>
         </div>

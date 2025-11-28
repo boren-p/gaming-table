@@ -3,7 +3,6 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import HeroCarousel from '../components/HeroCarousel';
-import Cards from '../components/Cards';
 import CreateProduct from '../compsAdmin/CreateProduct';
 
 const Home = () => {
@@ -13,10 +12,6 @@ const Home = () => {
 
       <main className="grow w-full">
         <HeroCarousel />
-
-        {/* Featured Section Placeholder */}
-        
-        <Cards/>
         
         <CreateProduct/>
       </main>

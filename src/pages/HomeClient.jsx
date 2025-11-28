@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import HeroCarousel from '../components/HeroCarousel';
-import Cards from '../components/Cards';
 import Footer from '../components/Footer';
 
 const HomeClient = () => {
@@ -44,7 +43,6 @@ const HomeClient = () => {
 
         {/* Featured Section Placeholder */}
         
-        <Cards/>
         
       </main>
       <Footer />
