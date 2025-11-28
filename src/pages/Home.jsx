@@ -1,9 +1,8 @@
 import React from 'react';
-
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import HeroCarousel from '../components/HeroCarousel';
-import CreateProduct from '../compsAdmin/CreateProduct';
+import ProductList from '../components/ProductList';
 
 const Home = () => {
   return (
@@ -13,6 +12,7 @@ const Home = () => {
       <main className="grow w-full">
         <HeroCarousel />
         
+        <ProductList />
       </main>
       <Footer />
     </div>
