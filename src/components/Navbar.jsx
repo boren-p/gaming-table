@@ -38,7 +38,8 @@ const Navbar = () => {
               Create Account
               </button>}
         </div>
-        <div className='flex gap-5 items-center justify-center'>
+
+        {localStorage.getItem("role") && <div className='flex gap-5 items-center justify-center'>
         {localStorage.getItem("role") === "cliente" && 
         <div className='cursor-pointer'>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
@@ -54,7 +55,7 @@ const Navbar = () => {
               Sign Out
               </button>}
         
-        </div>
+        </div>}
 
       </div>
     </header>

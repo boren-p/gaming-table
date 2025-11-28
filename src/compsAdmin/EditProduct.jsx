@@ -100,7 +100,7 @@ const EditProduct = (id) => {
     
     return (
         <div className='fixed z-50 top-0 left-0 w-full mt-20'>
-            <div className='fixed z-40 top-0 left-0 bg-neutral-800 h-screen w-screen opacity-50'></div>
+            <div className='fixed z-40 top-0 left-0 backdrop-blur-2xl h-screen w-screen'></div>
             <div className='bg-white relative z-50'>
                 <h2 className=" text-3xl font-bold mb-8 text-center text-deep-forest-green">Edit Product</h2>
                 <form onSubmit={handleSubmit}
